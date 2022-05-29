@@ -8,46 +8,75 @@ import plotly as px
 import plotly.figure_factory as ff
 
 def app():
-    st.title("Customer Segment Analysis")
+    auto_data = pd.read_csv('database/Customer Segment Data.csv')
+
+    st.title("Customer Segmentation Analysis")
+    # Add the content here
+
     with st.sidebar:
         selected = option_menu(
             menu_title="Autolysis" ,
             options=["Four Wheeler", "Two Wheeler" , "Potential customers" , "Electric Vehicles", "Safety Norms"],
         )
 
-    st.title("Customer Segmentation Analysis")
-
-    auto_data = pd.read_csv('database/Customer Segment Data.csv')
+    # Bar chart of the number of cars vs count of cars
+    st.subheader("Car Sales Analysis")
+    st.caption("This chart represents the number of cars available in our dataset. SUVs and Baleno are a few top selling cars according to the dataset")
     makes = (auto_data["Car Type"].value_counts()).to_frame();
     st.bar_chart(makes)
 
+    # Indexing on the bases of Car types
+
+    st.subheader("Age groups")
+    st.caption("The below scatter plot represents the interest of the age groups in the various cars present in the dataset. Not only does it shows the young age group in the dataset, it also shows the choice trend of the vehicle type amongst the young generation.")
+
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+
+    ax.scatter(
+        auto_data["Car Type"],
+        auto_data["Age"],
+    )
+
+    ax.set_ylabel("Age Group")
+    ax.set_xlabel("Car Name")
+
+    st.write(fig)
+
     auto_data.set_index("Car Type", inplace = True)
 
+    st.subheader("Pre-Existing Loans")
+    st.caption("This shows that a major segment of the people are not bounded under any personal or home loan, which might make them eligible for an easy approval for a vehicle loan.")
+    # Plot of the %age of the  
+    labels_home = auto_data['House Loan'].value_counts().to_dict().keys()
+    sizes_home = auto_data['House Loan'].value_counts().to_dict().values()
+    
+    col1, col2 = st.columns(2)
 
-
-    st.subheader("House Loan")
-    labels = auto_data['House Loan'].value_counts().to_dict().keys()
-    sizes = auto_data['House Loan'].value_counts().to_dict().values()
-        
-        # explode = (0, 0.1, 0, 0)
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
+    fig_home, ax_home = plt.subplots(figsize=(3, 3))
+    ax_home.pie(sizes_home, labels=labels_home, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-    ax1.axis('equal') 
-    st.pyplot(fig1)
+    ax_home.axis('equal') 
 
-    st.subheader("Personal Loan")
-    labels = auto_data['Personal loan'].value_counts().to_dict().keys()
-    sizes = auto_data['Personal loan'].value_counts().to_dict().values()
-        
-        # explode = (0, 0.1, 0, 0)
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
+    labels_personal = auto_data['Personal loan'].value_counts().to_dict().keys()
+    sizes_personal = auto_data['Personal loan'].value_counts().to_dict().values()
+    fig_personal, ax_personal = plt.subplots(figsize=(3, 3))
+    ax_personal.pie(sizes_personal, labels=labels_personal, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-    ax1.axis('equal') 
-    st.pyplot(fig1)
+    ax_personal.axis('equal') 
+    
+    with col1:
+        st.write("Home Loans")
+        st.pyplot(fig_home)
+    with col2:
+        st.write("Personal Loans")
+        st.pyplot(fig_personal)
 
+    
     st.subheader("Number of Dependents")
+    st.caption("The above pie chart represents the number of dependents relying on the individual. Obviously, choice of the individual while getting a vehicle would change according to the number of dependents relying over him/her")
+    col1 , col2 = st.columns(2)
+
     labels = auto_data['No of Dependents'].value_counts().to_dict().keys()
     sizes = auto_data['No of Dependents'].value_counts().to_dict().values()
         
@@ -56,39 +85,15 @@ def app():
     ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
     ax1.axis('equal') 
-    st.pyplot(fig1)
 
-    # hist_values = np.histogram(
-    #     auto_data['Age'].dt.hour, bins=24, range=(0,24))[0]
-    # fig = px.density_heatmap(auto_data, x="Age", y="Price")
-    # fig.show()
-
-    # st.line_chart(auto_data["Total Salary"],auto_data["Wife Salary"],auto_data["Salary"])
+    with col1:
+        st.pyplot(fig1)
+    
 
 
     st.subheader("Salary vs Wife Salary")
+    st.caption("This bargraph which compares the salary of the couple with respect to the car they bought helps us to analyse the choice of the couple dependent on the salary share of the two")
     st.bar_chart(auto_data[["Salary" , "Wife Salary"]])
-    # st.line_chart(auto_data["Age"])
-    st.subheader("Age Chart")
-    st.bar_chart(auto_data["Age"])
-
-    # Age Pie Chart
-    st.subheader("Age groups")
-    labels = auto_data['Age'].value_counts().to_dict().keys()
-    sizes = auto_data['Age'].value_counts().to_dict().values()
-        
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
-                shadow=True, startangle=90)
-    ax1.axis('equal') 
-
-    st.subheader("Age groups")
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
-            shadow=True, startangle=90)
-    ax1.axis('equal')
-
-    st.pyplot(fig1)
 
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
@@ -103,7 +108,10 @@ def app():
     ax.set_ylabel("Ex-Showroom Price")
     ax.set_xlabel("Wife Working")
 
+    st.caption("This scatter plot shows the relation between the price of the prefered vehicle and employment status of the other half, whether working or non-working. Clearly, the price range increases when the other halves of the individual are employed")
+
     st.write(fig)
 
     st.subheader("Price vs Total Salay")
+    st.caption("This graph shows the relation between the total salary of the couple and the price of the vehicle they chose. It gives us an idea that the total salary produces an impact on the choice of the vehicle")
     st.bar_chart(auto_data[['Price' , 'Total Salary']])

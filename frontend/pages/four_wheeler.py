@@ -126,3 +126,4 @@ with st.sidebar:
        options=["Four Wheeler", "Two Wheeler" , "Potential customers" , "Electric Vehicles", "Safety Norms"],
        orientation=HORIZONTAL
    )
+   
