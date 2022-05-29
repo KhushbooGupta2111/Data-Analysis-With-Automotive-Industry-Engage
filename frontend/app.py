@@ -12,15 +12,15 @@ import streamlit_multipage as multipage
 from multipage import MultiPage
 # import multipage
 
-from pages import car, customer, emission, electric_vehicles, two_wheeler_analysis
+from pages import four_wheeler, customer_segment, emission, electric_vehicles, two_wheeler
 
 
 app = MultiPage()
 
-app.add_page("Data Analysis", car.app)
-app.add_page("Customer Segmentation Analysis", customer.app)
+app.add_page("Data Analysis", four_wheeler.app)
+app.add_page("Customer Segmentation Analysis", customer_segment.app)
 app.add_page("Car Emission", emission.app)
 app.add_page("Electric Vehicles", electric_vehicles.app)
-app.add_page("2 Wheeler Vehicles", two_wheeler_analysis.app)
+app.add_page("2 Wheeler Vehicles", two_wheeler.app)
 
 app.run()

@@ -12,11 +12,30 @@ def app():
 
     st.title("Customer Segmentation Analysis")
     # Add the content here
+    st.header("Know your customers")
+
+    st.markdown("""
+    <style>
+    .big-font {
+        font-size:20px !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<p class="big-font">- Car buyers spend 59% of their time online researching.</p>' ,  unsafe_allow_html=True)
+    st.markdown('<p class="big-font">- When researching online, 46% of car shoppers use multiple devices.</p>' ,  unsafe_allow_html=True)
+    st.markdown('<p class="big-font">- Most car buyers are undecided at the start of the shopping process. When they first begin to shop, 6 out of 10 them are open to considering multiple vehicle options.</p>' ,  unsafe_allow_html=True)
+    st.markdown('<p class="big-font">- Third-party sites are the most used sites for car shopping, used by 78% of shoppers.</p>' ,  unsafe_allow_html=True)
+    st.markdown('<p class="big-font">- Walking in remains the common form of initial contact with a dealership by more than half of car shoppers.</p>' ,  unsafe_allow_html=True)
+    
+    st.header("Indian consumers root more for mileage than engine power.")
+
+    st.markdown('<p class="big-font">Here we have shown the behavioral patterns of Indian customers</p>' ,  unsafe_allow_html=True)
 
     with st.sidebar:
         selected = option_menu(
             menu_title="Autolysis" ,
-            options=["Four Wheeler", "Two Wheeler" , "Potential customers" , "Electric Vehicles", "Safety Norms"],
+            options=["Four Wheeler", "Two Wheeler" , "Potential customers" , "Electric Vehicles", "Car Emission"],
         )
 
     # Bar chart of the number of cars vs count of cars
