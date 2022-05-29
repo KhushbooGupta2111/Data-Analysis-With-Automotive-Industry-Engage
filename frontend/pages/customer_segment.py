@@ -28,7 +28,7 @@ def app():
     """, unsafe_allow_html=True)
     st.markdown('<p class="big-font">- Car buyers spend 59% of their time online researching.</p>' ,  unsafe_allow_html=True)
     st.markdown('<p class="big-font">- When researching online, 46% of car shoppers use multiple devices.</p>' ,  unsafe_allow_html=True)
-    st.markdown('<p class="big-font">- Most car buyers are undecided at the start of the shopping process. When they first begin to shop, 6 out of 10 them are open to considering multiple vehicle options.</p>' ,  unsafe_allow_html=True)
+    st.markdown('<p class="big-font">- Most car buyers are undecided at the start of the shopping process. When they first begin to shop, 6 out of 10, them are open to considering multiple vehicle options.</p>' ,  unsafe_allow_html=True)
     st.markdown('<p class="big-font">- Third-party sites are the most used sites for car shopping, used by 78% of shoppers.</p>' ,  unsafe_allow_html=True)
     st.markdown('<p class="big-font">- Walking in remains the common form of initial contact with a dealership by more than half of car shoppers.</p>' ,  unsafe_allow_html=True)
     
