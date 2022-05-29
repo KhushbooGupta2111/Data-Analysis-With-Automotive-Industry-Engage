@@ -1,16 +1,26 @@
-from pyexpat import features
-from matplotlib.ft2font import HORIZONTAL, VERTICAL
-from sqlalchemy import column
+from enum import auto
 import streamlit as st
+from streamlit_option_menu import option_menu
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from streamlit_option_menu import option_menu
+import plotly as px
+# from streamlit_multipage import MultiPage
+import plotly.figure_factory as ff
+import streamlit_multipage as multipage
 
-st.title("Data Analysis In The Field of Automotive Industry")
-st.subheader("Are you planning to launch a new vehicle or open your own automobile venture? Renowned automobile industries are using the power of data analytics to improvise their sales, make informed decisions and take customer's concern and needs into account")
-st.write("Every automobile maker releases various models, checkout some of the renowned ones")
+from multipage import MultiPage
+# import multipage
 
-# auto_data = pd.read_csv("Car_Features_Dataset.csv")
-auto_data = pd.read_csv("cars_engage_2022.csv")
+from pages import car, customer, emission, electric_vehicles, two_wheeler_analysis
 
+
+app = MultiPage()
+
+app.add_page("Data Analysis", car.app)
+app.add_page("Customer Segmentation Analysis", customer.app)
+app.add_page("Car Emission", emission.app)
+app.add_page("Electric Vehicles", electric_vehicles.app)
+app.add_page("2 Wheeler Vehicles", two_wheeler_analysis.app)
+
+app.run()
