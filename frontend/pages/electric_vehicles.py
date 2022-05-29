@@ -1,3 +1,4 @@
+#Importing Libraries
 from cgitb import enable
 from enum import auto
 from faulthandler import disable
@@ -13,7 +14,12 @@ import altair as alt
 import plotly
 from plotly.tools import FigureFactory as ff
 
+
 def app():
+    #Title
+    st.title("A shift towards Electric Vehicles")
+
+    #Sidebar
     with st.sidebar:
         selected = option_menu(
             menu_title="Autolysis" ,
@@ -21,9 +27,6 @@ def app():
             orientation=HORIZONTAL
         )
 
-    
-
-    st.title("A shift towards Electric Vehicles")
     
     st.markdown("""
     <style>
