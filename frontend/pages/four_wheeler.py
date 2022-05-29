@@ -60,7 +60,7 @@ with interior:
     st.write(auto_data['Minimum_Turning_Radius'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
 
     st.subheader("Mileage")
-    st.write(auto_data['City_Mileage'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
+    st.write(auto_data['Mileage'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
 
     st.subheader("Engine Specifications")
     st.write(auto_data['Displacement'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
