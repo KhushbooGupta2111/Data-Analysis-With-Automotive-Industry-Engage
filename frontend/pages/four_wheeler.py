@@ -49,13 +49,13 @@ with interior:
     if specifications_button:
         st.title("Specifications")
 
-    st.subheader("Car Dimentions")
+    st.subheader("Car Dimensions")
     st.write(auto_data[['Length' , 'Width' , 'Height']].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
     st.write(auto_data[['Wheels_Size' , 'Ground_Clearance']].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
     st.write(auto_data[['Seating_Capacity' , 'Boot_Space']].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
     st.write(auto_data[['Front_Track' , 'Rear_Track']].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
 
-    st.subheader("Car Weight and Performace")
+    st.subheader("Car Weight and Performance")
     st.write(auto_data[['Kerb_Weight' , 'Gross_Vehicle_Weight']].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
     st.write(auto_data['Minimum_Turning_Radius'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
 

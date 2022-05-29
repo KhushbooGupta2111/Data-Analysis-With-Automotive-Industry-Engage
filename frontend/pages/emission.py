@@ -9,21 +9,29 @@ import plotly as px
 from streamlit_multipage import MultiPage
 import plotly.figure_factory as ff
 
-# from pages import app, customer, emission
-
-# app = MultiPage()
-
-# Add all your applications (pages) here
-# app.add_page("Upload Data", app.app)
-# app.add_page("Change Metadata", customer.app)
-# app.add_page("Machine Learning", emission.app)
 def app():
     st.title("Car Emission")
+
+    st.markdown("""
+    <style>
+    .big-font {
+        font-size:20px !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<p class="big-font">Carbon dioxide (CO2) is one of the primary constituents of a vehicle’s tailpipe emissions. An end product of any fuel combustion process, today, motor vehicles are estimated to contribute nearly 24 per cent of the world’s direct CO2 emissions6.</p>' ,  unsafe_allow_html=True)
+    st.markdown('<p class="big-font">The standards are set in terms of gasoline-equivalent liters per 100 kilometers (L/100 km) and are based on vehicle curb weight.</p>' , unsafe_allow_html=True);
+    st.markdown('<p class="big-font">The standards are set in terms of gasoline-equivalent liters per 100 kilometers (L/100 km) and are based on vehicle curb weight</p>' , unsafe_allow_html=True);
+    st.markdown('<p class="big-font">The actual fuel consumption for compliance is measured as grams of carbon dioxide (CO2) emissions per kilometer (g/km) during vehicle type approval.</p>' , unsafe_allow_html=True);
+
 
     auto_data = pd.read_csv("database/Car_Emission_Data_Clean.csv")
     
     st.subheader("Indian Vehicle Market")
-    st.caption("Indian vehicle market is one of the biggest vehicle market in the world. We have taken a dataset which contains the following companies.")
+    st.caption("Indian vehicle market is one of the biggest vehicle market in the world.")
+    st.caption("Maruti has the largest market share with 29.4% and is followed by Toyota with 14.5%. The top five manufacturers have 74.4% of the market and thus mostly govern industry trends in terms of new technologies and CO2 emissions.")
+    st.caption('We have taken a dataset which contains the following companies.')
     labels_home = auto_data['Make'].value_counts().to_dict().keys()
     sizes_home = auto_data['Make'].value_counts().to_dict().values()
     
@@ -66,9 +74,12 @@ def app():
     st.write(fig)
     
     st.subheader("Kerb Weight")
-    st.caption(f"The Kerb Weight distribution of the vehicles shows the variation of the kerb weights. Statistically, the maximum kerb weight is {auto_data['Kerb_Weight'].max()} kgs and the minumum kerb weight is {auto_data['Kerb_Weight'].min()} kgs")
+    st.caption("More Kerb Weight means more fuel consumption which furthur leads to more CO2 EMissions. Automobiles have to ensure this by reducing curb weigths of the vehicles in our dataset")
+    st.image("images/Curb CO2.png")
+    st.caption(" From this we can see, there is a marginal drop in both fleet average curb weight and CO2 emissions.")
     st.line_chart(auto_data['Kerb_Weight'])
-    
+    st.caption(f"The Kerb Weight distribution of the vehicles shows the variation of the kerb weights. Statistically, the maximum kerb weight is {auto_data['Kerb_Weight'].max()} kgs and the minumum kerb weight is {auto_data['Kerb_Weight'].min()} kgs")
+
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
 
