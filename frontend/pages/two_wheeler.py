@@ -2,13 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
 from streamlit_multipage import MultiPage
 
 
 def app():
-    st.title("Indian Two Wheeler Market")
 
+    #Content
+    st.title("Indian Two Wheeler Market")
     st.markdown("""
     <style>
     .big-font {
@@ -18,16 +18,18 @@ def app():
     """, unsafe_allow_html=True)
 
     st.markdown('<p class="big-font">Motorcycles, mopeds, scooters, and electric two-wheelers are the most common two-wheelers in India. Two-wheelers are in high demand in India due to their ease of maneuvering around congested roads, reduced carbon emissions, higher fuel efficiency, and ability to provide a cost-effective means of transportation as compared to three or four-wheeled vehicles. In addition, rising urbanization, improved road infrastructure, and an increase in the number of female consumers are boosting two-wheeler demand in India."</p>', unsafe_allow_html=True)
-
+    
+    #Reading csv file
     auto_data = pd.read_csv("database/Two Wheeler Data.csv")
 
+    #Calculating bike age
     from datetime import date
     current_year = date.today().year
-
     auto_data['year'] = current_year - auto_data['year']
     auto_data.rename(columns = {'year':'bike_age'}, inplace = True)
 
-    # Plotting
+
+    # Data Visualisation
     st.subheader("Ownership Type")
     st.caption("This barchart shows the ownership type of the motorbikes present in the dataset. Analysing the graph, we can come to a conclusion that the majority of the bikes sold belonged to the primary owner and a lot less 4th and 5th motorbike sales.")
     st.bar_chart(auto_data['owner'].value_counts())
@@ -41,10 +43,8 @@ def app():
         auto_data["owner"],
         auto_data["selling_price"],
     )
-
     ax.set_ylabel("Selling Price")
     ax.set_xlabel("Ownership Type")
-
     st.write(fig)
 
     auto_data.set_index('bike_age', inplace = True)
@@ -59,16 +59,12 @@ def app():
 
     st.subheader("Ex-Showroom Price vs Selling Price")
     st.caption("This scatterplot shows the relation between the selling price and the ex-showroom price of the motorvehicle. The plot shows that the selling price and the ex-showroom price are directly propotional to one another.")
-    # st.line_chart(auto_data[['ex_showroom_price' , 'selling_price']])
-
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
-
     ax.scatter(
         auto_data["ex_showroom_price"],
         auto_data["selling_price"],
     )
-
     ax.set_ylabel("Selling Price")
     ax.set_xlabel("Ownership Type")
     st.write(fig)
