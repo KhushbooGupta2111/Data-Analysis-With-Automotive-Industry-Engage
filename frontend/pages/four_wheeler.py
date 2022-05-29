@@ -10,9 +10,7 @@ from streamlit_option_menu import option_menu
 from PIL import Image
 
 def app():
-    # image=Image.open("images/Random_Image.jpg")
-    # st.image(image, caption='Sunrise by the mountains')
-
+    
     st.title("Data Analysis In The Field of Automotive Industry")
     st.subheader("Are you planning to launch a new vehicle or open your own automobile venture? Renowned automobile industries are using the power of data analytics to improvise their sales, make informed decisions and take customer's concern and needs into account")
     st.write("Every automobile maker releases various models, checkout some of the renowned ones")
@@ -74,6 +72,7 @@ def app():
         st.write(auto_data['Mileage'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
         st.subheader("Emission Norms")
         st.write(auto_data['Emission_Norm'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
+
         st.subheader("Engine Specifications")
         st.write(auto_data['Displacement'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
         st.write(auto_data[['Power' , 'Torque' , 'Cylinders']].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
@@ -151,7 +150,14 @@ def app():
         st.header("Other Features")
         st.write(auto_data[['Start_/_Stop_Button' , '12v_Power_Outlet' , 'Aux-in_Compatibility']].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
 
-    
+    # st.write(auto_data['Ground_Clearance'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
+
+
+    # price = st.selectbox('Price of the car' , price_data.unique())
+    # st.write("Tata")
+    # st.table(pd.DataFrame(auto_data["Model"].where(auto_data["Make"] == "Tata").unique()).dropna())
+
+    # CSS to inject contained in a string
     hide_dataframe_row_index = """
                 <style>
                 .column_heading.level0 {display:none}
@@ -166,7 +172,7 @@ def app():
     with st.sidebar:
         selected = option_menu(
             menu_title="Autolysis" ,
-            options=["Four Wheeler", "Two Wheeler" , "Potential customers" , "Electric Vehicles", "Safety Norms"],
+            options=["Four Wheeler", "Two Wheeler" , "Potential customers" , "Electric Vehicles", "Car Emission"],
             orientation=HORIZONTAL
         )
 

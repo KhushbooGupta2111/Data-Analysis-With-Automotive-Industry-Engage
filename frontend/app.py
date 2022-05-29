@@ -1,20 +1,17 @@
+# importing required libraries,components
+import pandas as pd
+import numpy as np
 from enum import auto
 import streamlit as st
 from streamlit_option_menu import option_menu
 import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
 import plotly as px
-# from streamlit_multipage import MultiPage
 import plotly.figure_factory as ff
 import streamlit_multipage as multipage
-
 from multipage import MultiPage
-# import multipage
-
 from pages import four_wheeler, customer_segment, emission, electric_vehicles, two_wheeler
 
-
+#Routing of sidebar
 app = MultiPage()
 
 app.add_page("Data Analysis", four_wheeler.app)
@@ -24,3 +21,5 @@ app.add_page("Electric Vehicles", electric_vehicles.app)
 app.add_page("2 Wheeler Vehicles", two_wheeler.app)
 
 app.run()
+
+
