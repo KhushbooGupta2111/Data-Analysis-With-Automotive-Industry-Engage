@@ -72,7 +72,8 @@ def app():
 
         st.subheader("Mileage")
         st.write(auto_data['Mileage'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
-
+        st.subheader("Emission Norms")
+        st.write(auto_data['Emission_Norm'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
         st.subheader("Engine Specifications")
         st.write(auto_data['Displacement'].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
         st.write(auto_data[['Power' , 'Torque' , 'Cylinders']].where((auto_data['Make'] == make) & (auto_data['Model'] == model) & (auto_data['Variant'] == variant)).dropna())
