@@ -3,7 +3,7 @@
 
 ## Caralysis
 Caralysis
-Caralysis is a web app which is aimed at solving these problems which provides dashboards, visualisations, trends, solutions for solving various challenges faced by automobiles as well as the imporivsation they can bring to their business sales as well as serving  customer’s satisfaction
+Caralysis is a web app which is aimed at solving these problems which provides dashboards, visualisations, trends, solutions for solving various challenges faced by automobiles as well as the improvisation they can bring to their business sales as well as serving  customer’s satisfaction
 
 ## Tech Stack
 
